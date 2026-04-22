@@ -1,4 +1,4 @@
-# Stop Writing Test Fixtures by Hand — Let Kiro Generate Them
+# Generating realistic test fixtures with Kiro
 
 Every developer has been here: you need to test a feature, so you spend 45 minutes crafting a JSON fixture. You make up a score, invent a player name, stub out a few fields. The test passes. You ship.
 
@@ -6,11 +6,11 @@ Then production gets a 0-0 draw. Or an abandoned match. Or a fan who joined mid-
 
 The problem isn't the test — it's the fixture. Minimal placeholder data only tests the happy path. Realistic mock data tests the real world.
 
-I described two data models to Kiro — live match events and fan engagement for a sports platform — and asked it to generate realistic fixtures, edge cases, and the tests to validate them. Here's what came out and why it matters.
+I described two data models to Kiro — live match events and fan engagement for a sports platform — and asked it to generate realistic fixtures, edge cases, and the tests to validate them. Kiro produced 12 fixtures covering 8 edge cases in under a minute. Here's what came out and why it matters.
 
 ---
 
-## The data models
+## Data models
 
 **Match events** capture everything that happens in a football match: goals, cards, substitutions, added time, penalty shootouts. The tricky part is that a match can be in many states — scheduled, live, completed, or abandoned — and each state has different nullable fields.
 
@@ -20,9 +20,9 @@ Both models have one thing in common: minimal placeholder data hides entire cate
 
 ---
 
-## What Kiro generated: realistic fixtures
+## Realistic fixtures
 
-Here's a slice of the typical match fixture Kiro produced — a Manchester City 3-2 Liverpool match with accurate event sequencing, realistic player references, and domain-correct rules applied (penalty goals have no assist):
+The following fixture shows a completed match with accurate event sequencing, realistic player references, and domain rules applied throughout:
 
 ```json
 {
@@ -60,7 +60,7 @@ Here's a slice of the typical match fixture Kiro produced — a Manchester City 
 
 Notice `"assist": null` on the penalty goal. That's a domain rule — penalties don't have assists. A hand-crafted fixture would likely set `"assist": "some_player"` without thinking about it, and your assist-counting logic would silently produce wrong numbers.
 
-The fan engagement fixture is equally detailed — 184,320 active fans, a sentiment timeline that spikes after each goal, polls with vote counts that actually sum to 100%, and a fan-of-the-match profile:
+The fan engagement fixture is equally detailed. The following sentiment timeline shows values that spike after each goal, reflecting the relationship between match events and fan emotion:
 
 ```json
 {
@@ -82,9 +82,9 @@ Realistic typical data is useful. Edge cases are where bugs live.
 
 I asked Kiro to generate edge cases for both data types — empty arrays, null values, boundary conditions, and states that only occur in specific scenarios. Here's what it produced and why each one matters.
 
-### Match events edge cases
+### Match event edge cases
 
-**Goalless draw — empty events array**
+**Goalless draw — empty events array:**
 
 ```json
 {
@@ -96,7 +96,7 @@ I asked Kiro to generate edge cases for both data types — empty arrays, null v
 
 Any code that does `events[0]` or `events[-1]` to find the last goal crashes here. Minimal fixtures always have at least one event. This one doesn't.
 
-**Abandoned match — null final whistle**
+**Abandoned match — null final whistle:**
 
 ```json
 {
@@ -110,7 +110,7 @@ Any code that does `events[0]` or `events[-1]` to find the last goal crashes her
 
 Match duration calculations using `final_whistle - actual_kickoff` will throw a `TypeError` on `None`. This fixture makes that test explicit before it hits production.
 
-**Scheduled future match — null score, null referee, no events**
+**Scheduled future match — null score, null referee, no events:**
 
 ```json
 {
@@ -124,7 +124,7 @@ Match duration calculations using `final_whistle - actual_kickoff` will throw a 
 
 Pre-match screens that unconditionally render `score.home` will crash. A minimal fixture always has a score because you filled it in. This one doesn't, because a scheduled match hasn't been played yet.
 
-**Extra time goal — minute 90+4**
+**Extra time goal — minute 90+4:**
 
 ```json
 {
@@ -139,7 +139,7 @@ Minute 90+4 is not the same as minute 94. Display logic that ignores `extra_time
 
 ### Fan engagement edge cases
 
-**Fan with zero engagement**
+**Fan with zero engagement:**
 
 ```json
 {
@@ -152,7 +152,7 @@ Minute 90+4 is not the same as minute 94. Display logic that ignores `extra_time
 
 Leaderboard logic that calls `max(reactions)` or `reactions[0]` crashes on a fan who watched the whole match but never tapped a button. These fans exist — they're just quiet.
 
-**Poll with zero votes**
+**Poll with zero votes:**
 
 ```json
 {
@@ -166,7 +166,7 @@ Leaderboard logic that calls `max(reactions)` or `reactions[0]` crashes on a fan
 
 Percentage calculations divide by `total_votes`. Zero votes means `ZeroDivisionError`. This only happens in low-traffic matches or when a poll closes too fast — exactly the scenario your test suite never covers with a fixture that always has votes.
 
-**Abandoned session — null fan of the match, empty polls**
+**Abandoned session — null fan of the match, empty polls:**
 
 ```json
 {
@@ -179,7 +179,7 @@ Percentage calculations divide by `total_votes`. Zero votes means `ZeroDivisionE
 
 Fan of the match is awarded at full time. An abandoned match never reaches full time. UI code that unconditionally renders this field will crash. The fixture makes the contract explicit.
 
-**Sentiment at exact boundary values**
+**Sentiment at exact boundary values:**
 
 ```json
 { "minute": 89, "home_sentiment": 1.0, "away_sentiment": 0.0 }
@@ -189,7 +189,7 @@ Validation logic written as `sentiment < 1.0` instead of `sentiment <= 1.0` reje
 
 ---
 
-## The tests that prove it
+## Tests that prove it
 
 Each edge case has a test with a comment explaining the exact bug it prevents:
 
@@ -203,6 +203,7 @@ def test_poll_with_zero_votes_has_null_winner(self):
     poll = self._get("zero votes")["poll"]
     assert poll["total_votes"] == 0
     assert poll["winning_option_id"] is None
+
 
 def test_scheduled_match_has_null_score_and_no_events(self):
     """
@@ -219,23 +220,13 @@ def test_scheduled_match_has_null_score_and_no_events(self):
 
 ---
 
-## Why this approach beats writing fixtures by hand
-
-When you write fixtures manually, you fill in what you know. You give the match a score because matches have scores. You give the fan some reactions because fans react. You never think to leave `score` as `null` because in your mental model, a match always has a score.
-
-Kiro thinks about the data model, not your mental model. It generates fixtures that cover the full state space — including the states you didn't think to test.
-
-The other advantage: consistency. The sentiment timeline spikes after goals because Kiro understood the relationship between match events and fan sentiment. The penalty goal has no assist because Kiro applied the domain rule. These aren't things you'd necessarily get right at 4pm on a Friday when you're just trying to get the test to pass.
-
----
-
 ## How to ask for edge cases
 
-The prompt that produced these fixtures:
+The prompt that produced the match event edge cases:
 
 > Generate edge case fixtures for a live match event model. Include: a goalless draw with an empty events array, an abandoned match with a null final whistle and partial events, a match with extra time and a penalty shootout, and a scheduled future match with null score and no referee. For each case, add a `_description` field explaining what makes it an edge case.
 
-And for fan engagement:
+The prompt that produced the fan engagement edge cases:
 
 > Generate edge case fixtures for a fan engagement session. Include: a fan with zero interactions, a poll that closed with zero votes, a session terminated due to match abandonment with null fan-of-the-match, sentiment values at exact boundary conditions (0.0 and 1.0), and a fan who joined mid-match. Explain why each case matters for production code.
 
@@ -243,10 +234,10 @@ The `_description` field is worth asking for explicitly — it makes the fixture
 
 ---
 
-## The full code
+## Conclusion
+
+Kiro's fixture generation works because it reasons about your data model holistically — covering the null values, empty arrays, and boundary conditions that hand-crafted fixtures miss. When you describe a match that can be abandoned, Kiro generates a fixture where `final_whistle` is null and `score` is partial. When you describe a fan engagement session, it generates the fan who never interacted, not just the one who did everything.
+
+The result is a test suite that catches real bugs before they reach production — not because you thought of every edge case, but because you didn't have to.
 
 Fixtures, models, and all 28 tests are on [GitHub](https://github.com/Megh-bot/kiro-sports-mock-data).
-
----
-
-*Built with [Kiro](https://kiro.dev) — described the data models, asked for realistic fixtures and edge cases, then walked through the design decisions together.*
