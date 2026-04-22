@@ -1,0 +1,124 @@
+{
+  "match": {
+    "id": "match_epl_2026_mci_liv_001",
+    "competition": "English Premier League",
+    "season": "2025-26",
+    "matchday": 32,
+    "status": "COMPLETED",
+    "venue": {
+      "id": "venue_etihad",
+      "name": "Etihad Stadium",
+      "city": "Manchester",
+      "capacity": 53400,
+      "surface": "GRASS"
+    },
+    "scheduled_kickoff": "2026-04-05T16:30:00Z",
+    "actual_kickoff": "2026-04-05T16:32:00Z",
+    "final_whistle": "2026-04-05T18:21:00Z",
+    "home_team": {
+      "id": "team_mci",
+      "name": "Manchester City",
+      "short_name": "MCI",
+      "crest_url": "https://assets.example.com/crests/mci.png"
+    },
+    "away_team": {
+      "id": "team_liv",
+      "name": "Liverpool FC",
+      "short_name": "LIV",
+      "crest_url": "https://assets.example.com/crests/liv.png"
+    },
+    "score": {
+      "home": 3,
+      "away": 2,
+      "half_time": { "home": 2, "away": 1 }
+    },
+    "attendance": 52847,
+    "referee": {
+      "id": "ref_001",
+      "name": "Michael Oliver",
+      "nationality": "English"
+    },
+    "events": [
+      {
+        "id": "evt_001",
+        "type": "GOAL",
+        "minute": 14,
+        "extra_time_minute": null,
+        "team_id": "team_mci",
+        "player": { "id": "player_haaland", "name": "Erling Haaland", "shirt_number": 9 },
+        "assist": { "id": "player_silva", "name": "Bernardo Silva", "shirt_number": 20 },
+        "goal_type": "OPEN_PLAY",
+        "video_url": "https://highlights.example.com/evt_001"
+      },
+      {
+        "id": "evt_002",
+        "type": "GOAL",
+        "minute": 27,
+        "extra_time_minute": null,
+        "team_id": "team_mci",
+        "player": { "id": "player_foden", "name": "Phil Foden", "shirt_number": 47 },
+        "assist": { "id": "player_haaland", "name": "Erling Haaland", "shirt_number": 9 },
+        "goal_type": "OPEN_PLAY",
+        "video_url": "https://highlights.example.com/evt_002"
+      },
+      {
+        "id": "evt_003",
+        "type": "GOAL",
+        "minute": 38,
+        "extra_time_minute": null,
+        "team_id": "team_liv",
+        "player": { "id": "player_salah", "name": "Mohamed Salah", "shirt_number": 11 },
+        "assist": null,
+        "goal_type": "PENALTY",
+        "video_url": "https://highlights.example.com/evt_003"
+      },
+      {
+        "id": "evt_004",
+        "type": "YELLOW_CARD",
+        "minute": 52,
+        "extra_time_minute": null,
+        "team_id": "team_liv",
+        "player": { "id": "player_mac_allister", "name": "Alexis Mac Allister", "shirt_number": 10 },
+        "reason": "Tactical foul"
+      },
+      {
+        "id": "evt_005",
+        "type": "SUBSTITUTION",
+        "minute": 63,
+        "extra_time_minute": null,
+        "team_id": "team_mci",
+        "player_off": { "id": "player_foden", "name": "Phil Foden", "shirt_number": 47 },
+        "player_on": { "id": "player_doku", "name": "Jeremy Doku", "shirt_number": 11 }
+      },
+      {
+        "id": "evt_006",
+        "type": "GOAL",
+        "minute": 71,
+        "extra_time_minute": null,
+        "team_id": "team_liv",
+        "player": { "id": "player_nunez", "name": "Darwin Núñez", "shirt_number": 9 },
+        "assist": { "id": "player_salah", "name": "Mohamed Salah", "shirt_number": 11 },
+        "goal_type": "HEADER",
+        "video_url": "https://highlights.example.com/evt_006"
+      },
+      {
+        "id": "evt_007",
+        "type": "GOAL",
+        "minute": 89,
+        "extra_time_minute": null,
+        "team_id": "team_mci",
+        "player": { "id": "player_haaland", "name": "Erling Haaland", "shirt_number": 9 },
+        "assist": { "id": "player_doku", "name": "Jeremy Doku", "shirt_number": 11 },
+        "goal_type": "OPEN_PLAY",
+        "video_url": "https://highlights.example.com/evt_007"
+      },
+      {
+        "id": "evt_008",
+        "type": "ADDED_TIME",
+        "minute": 90,
+        "extra_time_added": 5,
+        "period": "SECOND_HALF"
+      }
+    ]
+  }
+}

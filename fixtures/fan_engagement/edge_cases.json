@@ -1,0 +1,146 @@
+{
+  "edge_cases": [
+    {
+      "_description": "Fan with zero engagement — joined session but never interacted",
+      "fan_profile": {
+        "fan_id": "fan_zero_001",
+        "display_name": "QuietWatcher",
+        "match_id": "match_epl_2026_mci_liv_001",
+        "joined_at": "2026-04-05T16:31:00Z",
+        "left_at": "2026-04-05T18:22:00Z",
+        "watch_duration_minutes": 111,
+        "reactions": [],
+        "polls_participated": [],
+        "badges": [],
+        "fan_of_the_match_nominated": false,
+        "total_engagement_score": 0
+      }
+    },
+    {
+      "_description": "Fan who joined mid-match and left early — partial watch, partial data",
+      "fan_profile": {
+        "fan_id": "fan_partial_001",
+        "display_name": "CasualViewer99",
+        "match_id": "match_epl_2026_mci_liv_001",
+        "joined_at": "2026-04-05T17:15:00Z",
+        "left_at": "2026-04-05T17:58:00Z",
+        "watch_duration_minutes": 43,
+        "reactions": [
+          {
+            "id": "reaction_partial_001",
+            "type": "GOAL_CELEBRATION",
+            "emoji": "⚽",
+            "match_minute": 71,
+            "team_id": "team_liv",
+            "timestamp": "2026-04-05T17:43:22Z"
+          }
+        ],
+        "polls_participated": [],
+        "badges": [],
+        "fan_of_the_match_nominated": false,
+        "total_engagement_score": 12
+      }
+    },
+    {
+      "_description": "Poll with a single option winning by 100% — all fans voted the same",
+      "poll": {
+        "id": "poll_landslide_001",
+        "match_id": "match_epl_2026_mci_liv_001",
+        "question": "Was that a foul?",
+        "triggered_at_minute": 52,
+        "closed_at_minute": 54,
+        "status": "CLOSED",
+        "options": [
+          { "id": "opt_yes", "label": "Yes, clear foul", "votes": 97823, "percentage": 99.1 },
+          { "id": "opt_no",  "label": "No, play on",     "votes": 881,   "percentage": 0.9 }
+        ],
+        "total_votes": 98704,
+        "winning_option_id": "opt_yes"
+      }
+    },
+    {
+      "_description": "Poll that closed with zero votes — triggered but no fans responded",
+      "poll": {
+        "id": "poll_empty_001",
+        "match_id": "match_edge_001",
+        "question": "Best moment of the first half?",
+        "triggered_at_minute": 45,
+        "closed_at_minute": 47,
+        "status": "CLOSED",
+        "options": [
+          { "id": "opt_a", "label": "The save in minute 12", "votes": 0, "percentage": 0.0 },
+          { "id": "opt_b", "label": "The free kick in minute 31", "votes": 0, "percentage": 0.0 },
+          { "id": "opt_c", "label": "Nothing stood out", "votes": 0, "percentage": 0.0 }
+        ],
+        "total_votes": 0,
+        "winning_option_id": null
+      }
+    },
+    {
+      "_description": "Engagement session for an abandoned match — session terminated mid-stream",
+      "fan_engagement_session": {
+        "match_id": "match_edge_002",
+        "session_id": "session_fan_abandoned_001",
+        "platform": "MOBILE_APP",
+        "total_active_fans": 38201,
+        "peak_concurrent_fans": 41003,
+        "peak_minute": 58,
+        "session_status": "TERMINATED",
+        "termination_reason": "MATCH_ABANDONED",
+        "terminated_at_minute": 67,
+        "reactions": [
+          {
+            "id": "reaction_abn_001",
+            "fan_id": "fan_j1k2l3",
+            "type": "DISBELIEF",
+            "emoji": "😤",
+            "match_minute": 67,
+            "team_id": null,
+            "event_id": null,
+            "timestamp": "2026-02-08T15:10:44Z",
+            "platform": "MOBILE_APP",
+            "location": { "country": "GB", "city": "Birmingham" }
+          }
+        ],
+        "polls": [],
+        "fan_of_the_match": null,
+        "sentiment_timeline": [
+          { "minute": 0,  "home_sentiment": 0.70, "away_sentiment": 0.69 },
+          { "minute": 23, "home_sentiment": 0.91, "away_sentiment": 0.44 },
+          { "minute": 58, "home_sentiment": 0.61, "away_sentiment": 0.78 },
+          { "minute": 67, "home_sentiment": 0.21, "away_sentiment": 0.20 }
+        ]
+      }
+    },
+    {
+      "_description": "Boundary — sentiment at exact extremes (0.0 and 1.0)",
+      "sentiment_timeline": [
+        { "minute": 0,  "home_sentiment": 0.50, "away_sentiment": 0.50 },
+        { "minute": 89, "home_sentiment": 1.0,  "away_sentiment": 0.0  }
+      ]
+    },
+    {
+      "_description": "Fan with maximum possible engagement — every interaction type present",
+      "fan_profile": {
+        "fan_id": "fan_max_001",
+        "display_name": "UltraFan2026",
+        "match_id": "match_epl_2026_mci_liv_001",
+        "joined_at": "2026-04-05T16:00:00Z",
+        "left_at": "2026-04-05T18:25:00Z",
+        "watch_duration_minutes": 145,
+        "reactions": [
+          { "id": "r1", "type": "GOAL_CELEBRATION", "emoji": "🔥", "match_minute": 14 },
+          { "id": "r2", "type": "GOAL_CELEBRATION", "emoji": "🔥", "match_minute": 27 },
+          { "id": "r3", "type": "DISBELIEF",        "emoji": "😱", "match_minute": 38 },
+          { "id": "r4", "type": "ANGER",            "emoji": "😤", "match_minute": 52 },
+          { "id": "r5", "type": "DISBELIEF",        "emoji": "😱", "match_minute": 71 },
+          { "id": "r6", "type": "GOAL_CELEBRATION", "emoji": "🏆", "match_minute": 89 }
+        ],
+        "polls_participated": ["poll_001", "poll_002"],
+        "badges": ["EARLY_BIRD", "POLL_MASTER", "SUPER_FAN", "MATCH_VETERAN"],
+        "fan_of_the_match_nominated": true,
+        "total_engagement_score": 980
+      }
+    }
+  ]
+}

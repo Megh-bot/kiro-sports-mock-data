@@ -1,0 +1,182 @@
+{
+  "edge_cases": [
+    {
+      "_description": "Goalless draw — no goals, no assists, minimal events",
+      "match": {
+        "id": "match_edge_001",
+        "competition": "English Premier League",
+        "season": "2025-26",
+        "matchday": 28,
+        "status": "COMPLETED",
+        "venue": {
+          "id": "venue_old_trafford",
+          "name": "Old Trafford",
+          "city": "Manchester",
+          "capacity": 74310,
+          "surface": "GRASS"
+        },
+        "scheduled_kickoff": "2026-03-14T15:00:00Z",
+        "actual_kickoff": "2026-03-14T15:01:00Z",
+        "final_whistle": "2026-03-14T16:52:00Z",
+        "home_team": { "id": "team_mun", "name": "Manchester United", "short_name": "MUN", "crest_url": "https://assets.example.com/crests/mun.png" },
+        "away_team": { "id": "team_che", "name": "Chelsea FC", "short_name": "CHE", "crest_url": "https://assets.example.com/crests/che.png" },
+        "score": {
+          "home": 0,
+          "away": 0,
+          "half_time": { "home": 0, "away": 0 }
+        },
+        "attendance": 73812,
+        "referee": { "id": "ref_002", "name": "Anthony Taylor", "nationality": "English" },
+        "events": []
+      }
+    },
+    {
+      "_description": "Abandoned match — started but not completed, score and events are partial",
+      "match": {
+        "id": "match_edge_002",
+        "competition": "FA Cup",
+        "season": "2025-26",
+        "matchday": null,
+        "status": "ABANDONED",
+        "abandon_reason": "Severe weather — waterlogged pitch",
+        "abandon_minute": 67,
+        "venue": {
+          "id": "venue_villa_park",
+          "name": "Villa Park",
+          "city": "Birmingham",
+          "capacity": 42785,
+          "surface": "GRASS"
+        },
+        "scheduled_kickoff": "2026-02-08T14:00:00Z",
+        "actual_kickoff": "2026-02-08T14:03:00Z",
+        "final_whistle": null,
+        "home_team": { "id": "team_avl", "name": "Aston Villa", "short_name": "AVL", "crest_url": "https://assets.example.com/crests/avl.png" },
+        "away_team": { "id": "team_tot", "name": "Tottenham Hotspur", "short_name": "TOT", "crest_url": "https://assets.example.com/crests/tot.png" },
+        "score": {
+          "home": 1,
+          "away": 1,
+          "half_time": { "home": 1, "away": 0 }
+        },
+        "attendance": 41203,
+        "referee": { "id": "ref_003", "name": "Stuart Attwell", "nationality": "English" },
+        "events": [
+          {
+            "id": "evt_edge_001",
+            "type": "GOAL",
+            "minute": 23,
+            "extra_time_minute": null,
+            "team_id": "team_avl",
+            "player": { "id": "player_watkins", "name": "Ollie Watkins", "shirt_number": 11 },
+            "assist": null,
+            "goal_type": "OPEN_PLAY",
+            "video_url": null
+          },
+          {
+            "id": "evt_edge_002",
+            "type": "GOAL",
+            "minute": 58,
+            "extra_time_minute": null,
+            "team_id": "team_tot",
+            "player": { "id": "player_son", "name": "Heung-min Son", "shirt_number": 7 },
+            "assist": { "id": "player_maddison", "name": "James Maddison", "shirt_number": 10 },
+            "goal_type": "OPEN_PLAY",
+            "video_url": null
+          }
+        ]
+      }
+    },
+    {
+      "_description": "Match with extra time and penalty shootout — boundary on minute field",
+      "match": {
+        "id": "match_edge_003",
+        "competition": "UEFA Champions League",
+        "season": "2025-26",
+        "matchday": null,
+        "round": "QUARTER_FINAL_SECOND_LEG",
+        "status": "COMPLETED",
+        "venue": {
+          "id": "venue_bernabeu",
+          "name": "Santiago Bernabéu",
+          "city": "Madrid",
+          "capacity": 81044,
+          "surface": "GRASS"
+        },
+        "scheduled_kickoff": "2026-04-15T20:00:00Z",
+        "actual_kickoff": "2026-04-15T20:01:00Z",
+        "final_whistle": "2026-04-15T22:47:00Z",
+        "home_team": { "id": "team_rma", "name": "Real Madrid", "short_name": "RMA", "crest_url": "https://assets.example.com/crests/rma.png" },
+        "away_team": { "id": "team_bay", "name": "Bayern Munich", "short_name": "BAY", "crest_url": "https://assets.example.com/crests/bay.png" },
+        "score": {
+          "home": 3,
+          "away": 3,
+          "half_time": { "home": 1, "away": 1 },
+          "extra_time": { "home": 0, "away": 0 },
+          "penalty_shootout": { "home": 4, "away": 3 }
+        },
+        "aggregate_score": { "home": 5, "away": 5 },
+        "winner": "team_rma",
+        "winner_method": "PENALTY_SHOOTOUT",
+        "attendance": 80921,
+        "referee": { "id": "ref_004", "name": "Szymon Marciniak", "nationality": "Polish" },
+        "events": [
+          {
+            "id": "evt_edge_010",
+            "type": "GOAL",
+            "minute": 90,
+            "extra_time_minute": 4,
+            "period": "SECOND_HALF_ADDED_TIME",
+            "team_id": "team_rma",
+            "player": { "id": "player_vini", "name": "Vinícius Jr.", "shirt_number": 7 },
+            "assist": null,
+            "goal_type": "OPEN_PLAY",
+            "video_url": "https://highlights.example.com/evt_edge_010"
+          },
+          {
+            "id": "evt_edge_011",
+            "type": "PENALTY_SHOOTOUT_RESULT",
+            "minute": 120,
+            "extra_time_minute": null,
+            "period": "PENALTY_SHOOTOUT",
+            "penalties": [
+              { "order": 1, "team_id": "team_rma", "player": { "id": "player_bellingham", "name": "Jude Bellingham" }, "result": "SCORED" },
+              { "order": 1, "team_id": "team_bay", "player": { "id": "player_kane", "name": "Harry Kane" }, "result": "SCORED" },
+              { "order": 2, "team_id": "team_rma", "player": { "id": "player_vini", "name": "Vinícius Jr." }, "result": "SCORED" },
+              { "order": 2, "team_id": "team_bay", "player": { "id": "player_muller", "name": "Thomas Müller" }, "result": "MISSED" },
+              { "order": 3, "team_id": "team_rma", "player": { "id": "player_modric", "name": "Luka Modrić" }, "result": "SCORED" },
+              { "order": 3, "team_id": "team_bay", "player": { "id": "player_sane", "name": "Leroy Sané" }, "result": "SCORED" },
+              { "order": 4, "team_id": "team_rma", "player": { "id": "player_carvajal", "name": "Dani Carvajal" }, "result": "MISSED" },
+              { "order": 4, "team_id": "team_bay", "player": { "id": "player_goretzka", "name": "Leon Goretzka" }, "result": "MISSED" },
+              { "order": 5, "team_id": "team_rma", "player": { "id": "player_tchouameni", "name": "Aurélien Tchouaméni" }, "result": "SCORED" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "_description": "Scheduled future match — no score, no events, no actual kickoff yet",
+      "match": {
+        "id": "match_edge_004",
+        "competition": "English Premier League",
+        "season": "2025-26",
+        "matchday": 36,
+        "status": "SCHEDULED",
+        "venue": {
+          "id": "venue_anfield",
+          "name": "Anfield",
+          "city": "Liverpool",
+          "capacity": 61276,
+          "surface": "GRASS"
+        },
+        "scheduled_kickoff": "2026-05-03T16:30:00Z",
+        "actual_kickoff": null,
+        "final_whistle": null,
+        "home_team": { "id": "team_liv", "name": "Liverpool FC", "short_name": "LIV", "crest_url": "https://assets.example.com/crests/liv.png" },
+        "away_team": { "id": "team_ars", "name": "Arsenal FC", "short_name": "ARS", "crest_url": "https://assets.example.com/crests/ars.png" },
+        "score": null,
+        "attendance": null,
+        "referee": null,
+        "events": []
+      }
+    }
+  ]
+}

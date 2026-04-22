@@ -1,0 +1,101 @@
+{
+  "fan_engagement_session": {
+    "match_id": "match_epl_2026_mci_liv_001",
+    "session_id": "session_fan_mci_liv_001",
+    "platform": "MOBILE_APP",
+    "total_active_fans": 184320,
+    "peak_concurrent_fans": 201847,
+    "peak_minute": 89,
+
+    "reactions": [
+      {
+        "id": "reaction_001",
+        "fan_id": "fan_a1b2c3",
+        "type": "GOAL_CELEBRATION",
+        "emoji": "🔥",
+        "match_minute": 14,
+        "team_id": "team_mci",
+        "event_id": "evt_001",
+        "timestamp": "2026-04-05T16:46:12Z",
+        "platform": "MOBILE_APP",
+        "location": { "country": "GB", "city": "Manchester" }
+      },
+      {
+        "id": "reaction_002",
+        "fan_id": "fan_d4e5f6",
+        "type": "DISBELIEF",
+        "emoji": "😱",
+        "match_minute": 38,
+        "team_id": "team_liv",
+        "event_id": "evt_003",
+        "timestamp": "2026-04-05T17:10:44Z",
+        "platform": "WEB",
+        "location": { "country": "EG", "city": "Cairo" }
+      },
+      {
+        "id": "reaction_003",
+        "fan_id": "fan_g7h8i9",
+        "type": "GOAL_CELEBRATION",
+        "emoji": "⚽",
+        "match_minute": 89,
+        "team_id": "team_mci",
+        "event_id": "evt_007",
+        "timestamp": "2026-04-05T18:01:33Z",
+        "platform": "SMART_TV",
+        "location": { "country": "US", "city": "New York" }
+      }
+    ],
+
+    "polls": [
+      {
+        "id": "poll_001",
+        "match_id": "match_epl_2026_mci_liv_001",
+        "question": "Who will score first?",
+        "triggered_at_minute": 0,
+        "closed_at_minute": 10,
+        "status": "CLOSED",
+        "options": [
+          { "id": "opt_a", "label": "Haaland", "votes": 48203, "percentage": 42.1 },
+          { "id": "opt_b", "label": "Salah", "votes": 39847, "percentage": 34.8 },
+          { "id": "opt_c", "label": "Someone else", "votes": 26310, "percentage": 23.0 }
+        ],
+        "total_votes": 114360,
+        "winning_option_id": "opt_a"
+      },
+      {
+        "id": "poll_002",
+        "match_id": "match_epl_2026_mci_liv_001",
+        "question": "Man of the Match so far?",
+        "triggered_at_minute": 45,
+        "closed_at_minute": 55,
+        "status": "CLOSED",
+        "options": [
+          { "id": "opt_d", "label": "Haaland", "votes": 61204, "percentage": 55.3 },
+          { "id": "opt_e", "label": "Foden", "votes": 29847, "percentage": 27.0 },
+          { "id": "opt_f", "label": "Salah", "votes": 19512, "percentage": 17.6 }
+        ],
+        "total_votes": 110563,
+        "winning_option_id": "opt_d"
+      }
+    ],
+
+    "fan_of_the_match": {
+      "fan_id": "fan_a1b2c3",
+      "display_name": "BlueMoonForever",
+      "reactions_count": 47,
+      "polls_participated": 2,
+      "watch_duration_minutes": 109,
+      "badge_awarded": "SUPER_FAN",
+      "featured_at_minute": 90
+    },
+
+    "sentiment_timeline": [
+      { "minute": 0,  "home_sentiment": 0.72, "away_sentiment": 0.71 },
+      { "minute": 14, "home_sentiment": 0.94, "away_sentiment": 0.41 },
+      { "minute": 27, "home_sentiment": 0.97, "away_sentiment": 0.33 },
+      { "minute": 38, "home_sentiment": 0.81, "away_sentiment": 0.68 },
+      { "minute": 71, "home_sentiment": 0.74, "away_sentiment": 0.82 },
+      { "minute": 89, "home_sentiment": 0.99, "away_sentiment": 0.18 }
+    ]
+  }
+}
