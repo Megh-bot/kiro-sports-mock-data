@@ -245,7 +245,7 @@ The `_description` field is worth asking for explicitly — it makes the fixture
 
 ## The full code
 
-Fixtures, models, and all 28 tests are on GitHub [link].
+Fixtures, models, and all 28 tests are on [GitHub](https://github.com/Megh-bot/kiro-sports-mock-data).
 
 ---
 
