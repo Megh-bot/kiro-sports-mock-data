@@ -1,4 +1,4 @@
-# Generating realistic test fixtures with Kiro
+# From Data Model to Edge Cases in Minutes with Kiro
 
 Every developer has been here: you need to test a feature, so you spend 45 minutes crafting a JSON fixture. You make up a score, invent a player name, stub out a few fields. The test passes. You ship.
 
