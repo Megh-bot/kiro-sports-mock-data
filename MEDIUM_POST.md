@@ -6,7 +6,7 @@ Then production gets a 0-0 draw. Or an abandoned match. Or a fan who joined mid-
 
 The problem isn't the test — it's the fixture. Minimal placeholder data only tests the happy path. Realistic mock data tests the real world.
 
-I described two data models to Kiro — live match events and fan engagement for a sports platform — and asked it to generate realistic fixtures, edge cases, and the tests to validate them. Kiro produced 12 fixtures covering 8 edge cases in under a minute. Here's what came out and why it matters.
+I described two data models to Kiro — live match events and fan engagement for a sports platform — and asked it to generate realistic fixtures, edge cases, and the tests to validate them. Here's what came out and why it matters.
 
 ---
 
